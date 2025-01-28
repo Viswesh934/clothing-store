@@ -47,7 +47,7 @@ function Product() {
                   onChange={handleproduct}
                   className="form-radio h-4 w-4 text-indigo-600"
                 />
-                <span className="ml-2">Unbranded.</span>
+                <span className="ml-2">Unbranded</span>
               </label>
             </div>
           </div>
