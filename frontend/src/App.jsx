@@ -3,13 +3,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Product from './Components/productselectionform.jsx'
+import Navbar from './Components/navbar.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
 
 
   return (
-    <Product/>           
+    <div>
+    <Navbar/>
+    <Product/>   
+    </div>        
   )
 }
 

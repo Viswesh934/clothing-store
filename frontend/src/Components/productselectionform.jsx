@@ -24,9 +24,9 @@ function Product() {
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
         <h1 className="text-2xl font-bold mb-6 text-center">Product Discounting System</h1>
         <form className="space-y-6">
-       
-          <div>
-            <label className="inline  text-sm font-medium text-gray-700">Product Type</label>
+          <div className="mt-2 flex space-x-4">
+          <label className="inline text-sm font medium text-green-700">Product name</label>
+            <input type="text" value="" className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"></input>
             <div className="mt-2 flex space-x-4">
               <label className="inline-flex items-center">
                 <input
@@ -51,6 +51,7 @@ function Product() {
               </label>
             </div>
           </div>
+
 
    
           {product === "branded" && (
@@ -105,6 +106,7 @@ function Product() {
               required
             >
               <option value="">Select discount type</option>
+              <option value="Not applicable">Not applicable</option>
               <option value="percentage">Percentage</option>
               <option value="amount">Amount</option>
               <option value="Bogo">Bogo</option>
@@ -203,6 +205,16 @@ function Product() {
             </div>
           )}
 
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Applicable locations</label>
+            <select className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm">
+            <option value="All">All</option>
+            <option value="hyderabad">Hyderabad</option>
+            <option value="bangalore">Bangalore</option>
+            <option value="chennai">Chennai</option>
+            </select>
+          </div>
+
    
           <button
             type="submit"
@@ -210,6 +222,7 @@ function Product() {
           >
             Submit
           </button>
+           
         </form>
       </div>
     </div>
