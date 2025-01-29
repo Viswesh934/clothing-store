@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "./navbar";
 
 const LoginForm=()=>{
     const [email,setemail]=useState("")
@@ -14,6 +15,9 @@ const LoginForm=()=>{
     }
 
     return(
+        <div className="flex flex-col min-h-screen bg-gray-200">
+            <Navbar />
+
         <div className="flex justify-center items-center h-screen bg-gray-200">
             <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
                 <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
@@ -28,10 +32,13 @@ const LoginForm=()=>{
                     <button className="bg-blue-600 text-white px-8 py-2 rounded-md hover:bg-blue-500">
                         Login
                     </button>
+                    <label className="block text-sm font-medium text-gray-700">Don't have an account?</label>
+                    <a href="/signup">Signup</a>
+                   
                     </form>
                     </div>
                     </div>
-    
+           </div>
     )}
 
     export default LoginForm;

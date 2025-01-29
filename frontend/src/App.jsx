@@ -4,16 +4,22 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Product from './Components/productselectionform.jsx'
 import Navbar from './Components/navbar.jsx'
+import LoginForm from './Components/loginform.jsx'
+import SignupForm from './Components/signupform.jsx'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 function App() {
   const [count, setCount] = useState(0)
 
 
   return (
-    <div>
-    <Navbar/>
-    <Product/>   
-    </div>        
+    <Routes>
+      <Route path="/" element={<Product />} />
+      <Route path='/login' element={<LoginForm />} />
+      <Route path='/signup' element={<SignupForm />} />
+    </Routes>
+          
   )
 }
 

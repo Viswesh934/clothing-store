@@ -10,7 +10,7 @@ const Navbar=()=>{
             <div className="flex justify-between items-center h-16">
             <div>
             <div className="hidden md:flex space-x-6">
-            <a href="/home" className="text-gray-800 hover:text-blue-600">
+            <a href="/" className="text-gray-800 hover:text-blue-600">
               Home
             </a>
             <a href="/products" className="text-gray-800 hover:text-blue-600">
@@ -24,7 +24,11 @@ const Navbar=()=>{
             </a>
 
             <button className="bg-blue-600 text-white px-8 py-2 rounded-md hover:bg-blue-500">
-                Sign in
+                <a href="/login">Sign in</a>
+            </button>
+
+            <button className="bg-blue-600 text-white px-8 py-2 rounded-md hover:bg-blue-500">
+                <a href="/signup">Sign up</a>
             </button>
           </div>
             </div>

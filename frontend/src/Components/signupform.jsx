@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import Navbar from "./navbar";
 
 const Signupform=()=>{
     const [name, setname]=useState("")
@@ -16,6 +17,8 @@ const Signupform=()=>{
     }
 
 return(
+    <div className="flex flex-col min-h-screen bg-gray-200">
+        <Navbar />
     <div className="flex justify-center items-center h-screen bg-gray-200">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
             <h1 className="text-2xl font-bold mb-6 text-center">Signup</h1>
@@ -29,11 +32,17 @@ return(
 
                 <label className="block text-sm font-medium text-gray-700">Password</label>
                 <input type="password" value={password} onChange={handlepassword} className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"></input>
-
+                
                 <button className="bg-blue-600 text-white px-8 py-2 rounded-md hover:bg-blue-500">
                     Signup
                 </button>
+
+                <label className="block text-sm font-medium text-gray-700">Already have an account?</label>
+                <a href="/login">Login</a>
+               
                 </form>
+                </div>
+
                 </div>
                 </div>
 
