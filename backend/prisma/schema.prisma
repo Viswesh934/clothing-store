@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  password  String
+  role      Role   @default(Maintainer)  
+  products  Product[] @relation("ProductModifiedBy")
+  createdAt DateTime  @default(now())
+}
+
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  brand       String?
+  price       Int
+  isBranded   Boolean  @default(false)
+  discountId  Int?
+  discount    Discount? @relation(fields: [discountId], references: [id])
+  modifiedBy  User?    @relation("ProductModifiedBy", fields: [modifiedById], references: [id])
+  modifiedById Int?
+  createdAt   DateTime @default(now())
+}
+
+model Discount {
+  id          Int       @id @default(autoincrement())
+  percentage  Int
+  description String?
+  createdAt   DateTime  @default(now())
+  products    Product[]
+}
+
+
+enum Role{
+  Maintainer
+  Manager
+}
