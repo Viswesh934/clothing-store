@@ -33,6 +33,7 @@ const signup= async (req,res)=>{
                 password:hashedPassword,
             }
         });
+        console.log(user);
         res.status(201).json(user);
     }catch(error){
         res.status(400).json({error:error.message});
@@ -52,8 +53,8 @@ const login= async (req,res)=>{
   
         if(match){
             const token=generatetoken(user.id);
+            console.log(token);
             res.status(200).json({token});
-           
         }
         else{
             res.status(400).json({error:'Invalid credentials'});
@@ -64,6 +65,7 @@ const login= async (req,res)=>{
         res.status(400).json({error:error.message});
     }
 }
+
 
 
 module.exports={signup,login};

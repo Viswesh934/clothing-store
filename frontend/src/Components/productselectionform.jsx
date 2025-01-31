@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import Navbar from "./navbar";
+import { createorupdateproduct } from "../services/productservices";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Product() {
   const [product, setProduct] = useState("");
   const [discount, setDiscount] = useState(0);
   const [price, setPrice] = useState(0);
   const [discounttype, setDiscounttype] = useState("");
+  const [selectedBrand, setSelectedBrand] = useState("");
+
 
   const handleproduct = (e) => {
     setProduct(e.target.value);
@@ -20,14 +26,57 @@ function Product() {
     setDiscounttype(e.target.value);
   };
 
+  const handlebrand = (e) => {
+    setSelectedBrand(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const productdata = {
+      name: e.target[0].value,
+      brand: selectedBrand || "unbranded",
+      price: price,
+      isBranded: product === "branded",
+      discountType: discounttype,
+      discountValue: discount,
+      buyX: e.target[6]?.value,
+      getY: e.target[7]?.value,
+      season: e.target[8]?.value,
+      startDate: e.target[9]?.value,
+      endDate: e.target[10]?.value,
+      modifiedById: 1,
+    };
+
+    try {
+      const response = await createorupdateproduct(productdata);
+      toast.success('Product Successfully Created/Updated', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      });
+      setTimeout(() => window.location.reload(), 3500);
+    } catch (error) {
+      toast.error(`Error: ${error.message}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      });
+    }
+  };
   return (
-    <div className="flex flex-col min-h-screen bg-gray-200">
+    <div className="min-h-screen bg-gradient-to-br sm:px-6">
       <Navbar />
-      <div className="flex flex-grow justify-center items-center">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
+      <div className="container mx-auto px-4 py-8">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
           <h1 className="text-2xl font-bold mb-6 text-center">Product Discounting System</h1>
 
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
            
             <div>
               <label className="block text-sm font-medium text-gray-700">Product Name</label>
@@ -66,21 +115,13 @@ function Product() {
             {product === "branded" && (
               <div>
                 <label className="block text-sm font-medium text-gray-700">Brand</label>
-                <select className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm">
+                <select className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"
+                value={selectedBrand}
+                onChange={handlebrand}
+                >
                   <option value="nike">Nike</option>
                   <option value="adidas">Adidas</option>
                   <option value="reebok">Reebok</option>
-                </select>
-              </div>
-            )}
-
-            {product === "unbranded" && (
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Unbranded</label>
-                <select className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm">
-                  <option value="unbranded1">Unbranded1</option>
-                  <option value="unbranded2">Unbranded2</option>
-                  <option value="unbranded3">Unbranded3</option>
                 </select>
               </div>
             )}
@@ -232,13 +273,14 @@ function Product() {
            
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
+              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300"
             >
-              Submit
+              Submit Product
             </button>
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

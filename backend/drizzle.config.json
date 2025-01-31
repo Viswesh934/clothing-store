@@ -1,4 +1,0 @@
-{   "dialect": "postgresql",
-    "schema": "./models",
-    "out": "./migrations"
-  }
