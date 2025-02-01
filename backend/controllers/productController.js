@@ -80,7 +80,7 @@ const getproductsbyname=async(req,res)=>{
 
     try{
         const name=req.params.name;
-        const data= prisma.product.findUnique({
+        const data=await prisma.product.findUnique({
             where:{
                 id:req.params.name
             }
@@ -95,7 +95,7 @@ const getproductsbyname=async(req,res)=>{
 
 const getproducts=async(req,res)=>{
     try{
-        const data= prisma.product.findMany();
+        const data=await prisma.product.findMany();
         console.log(data)
         res.status(200).json(data);
     }
