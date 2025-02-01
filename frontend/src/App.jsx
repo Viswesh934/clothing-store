@@ -18,14 +18,9 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Home/>} />
+      <Route path="/" element={<Product />} />
       <Route path='/login' element={<LoginForm />} />
       <Route path='/signup' element={<SignupForm />} />
-      <Route path='/product-form' element={<Product />} />
-      <Route path='/analysis' element={<Analysis />} />
-      <Route path='/products' element={<Productlist />} />
-      <Route path='/profile' element={<Profile />} />
-      <Route path='/settings' element={<Settings/>}/>
 
     </Routes>
           
